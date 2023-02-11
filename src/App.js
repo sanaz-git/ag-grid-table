@@ -1,10 +1,12 @@
 
-import './App.css';
+// import './App.css';
 import { AgGridReact } from 'ag-grid-react';
 import { useState ,useEffect, useMemo, useCallback, useRef} from 'react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
+// import 'ag-grid-community/styles/ag-grid.css';
+// import 'ag-grid-community/styles/ag-theme-alpine.css';
 
+
+import './App.scss';
 
 function App() {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
