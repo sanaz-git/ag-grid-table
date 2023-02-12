@@ -9,14 +9,17 @@ import { useState ,useEffect, useMemo, useCallback, useRef} from 'react';
 import './App.scss';
 
 function App() {
-  const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
+  const containerStyle = useMemo(() => ({ width: '100%', height: '100vh' }), []);
   const gridStyle = useMemo(() => ({ height: 600, width: '100%' }), []);
 
   const gridRef =useRef();
 
   const [rowData, setRowData] = useState();
   const [columnDefs, setColumnDefs] = useState([
-    { field: 'athlete',   pinned: 'left', },
+    { field: 'athlete',   pinned: 'left',
+    headerCheckboxSelection: true,
+    checkboxSelection: true,
+    showDisabledCheckboxes: true, },
     { field: 'age' },
     { field: 'country' },
     { field: 'sport' },
@@ -80,10 +83,16 @@ function App() {
               rowData={rowData}
               columnDefs={columnDefs}
               defaultColDef={defaultColDef}
-              rowSelection='multiple'
+              //pagination
               animateRows={true}
               pagination={true}
               paginationPageSize={10}
+              //checkbox
+              rowSelection={'multiple'}
+              suppressRowClickSelection={true}
+           
+           
+            
               />
             </div>
           </div>
