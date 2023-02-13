@@ -1,12 +1,38 @@
 
 // import './App.css';
 import { AgGridReact } from 'ag-grid-react';
-import { useState ,useEffect, useMemo, useCallback, useRef} from 'react';
+import { useState ,useEffect, useMemo, useCallback, useRef, Component} from 'react';
+
 // import 'ag-grid-community/styles/ag-grid.css';
 // import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-
 import './App.scss';
+
+
+
+const PushComp = p => { 
+  const onDollar = useCallback(() => window.alert('push ' + p.value));
+  return (
+    <>
+  <button onClick={onDollar}>
+    {/* {p.buttonText} */}
+   push
+    </button>
+  {p.value}
+  </>
+  )
+  };
+
+  class PullComp extends Component {
+    render(){
+      return (
+        <>
+        <button onClick={ () => window.alert('Pull')}>pull</button>
+        {this.props.value}
+        </>
+      )
+    }
+  }
 
 function App() {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100vh' }), []);
@@ -19,11 +45,28 @@ function App() {
     { field: 'athlete',   pinned: 'left',
     headerCheckboxSelection: true,
     checkboxSelection: true,
-    showDisabledCheckboxes: true, },
-    { field: 'age' },
-    { field: 'country' },
+    showDisabledCheckboxes: true, 
+    // rowDrag: true,
+    cellRenderer:PushComp,
+    // cellRendererParams:{
+    //   buttonText: '='
+    // }
+   
+
+  },
+    { field: 'age', cellRenderer: p => <><b>Age is: </b>{p.value}</>  },
+    { field: 'country', 
+  
+  },
     { field: 'sport' },
-    { field: 'year' },
+    { field: 'year',cellRendererSelector: p => {
+      if (p.value===2000){
+        return{component: PushComp}
+      }
+      if (p.value===2004){
+        return{component: PullComp}
+      }
+    } },
     { field: 'date' },
     { field: 'gold' },
     { field: 'silver' },
@@ -90,6 +133,11 @@ function App() {
               //checkbox
               rowSelection={'multiple'}
               suppressRowClickSelection={true}
+              //dragrow
+              // rowDragManaged={true} //dose not work when use pagination
+          
+           
+      
            
            
             
