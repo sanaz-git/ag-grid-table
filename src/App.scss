@@ -13,17 +13,24 @@
         foreground-color: #fff,//text color
         secondary-foreground-color: #253C59, //pagination text
         checkbox-unchecked-color: #fff,
-
+       
     ));
-//
+
+ 
     .ag-header {
         font-style: italic;  
         border-radius: 10px; 
-        text-align: center;
-         
+        text-align: center; 
+             
     }
 
-
+.ag-paging-panel{
+    border-radius: 15px;
+       
+     
+    border:1px solid #253C59;
+  
+}
 
 
     // or write CSS selectors to make customisations beyond what the parameters support

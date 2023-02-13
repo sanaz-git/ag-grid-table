@@ -1,5 +1,6 @@
 
 // import './App.css';
+import { ColumnGroup } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import { useState ,useEffect, useMemo, useCallback, useRef, Component} from 'react';
 
@@ -9,30 +10,12 @@ import { useState ,useEffect, useMemo, useCallback, useRef, Component} from 'rea
 import './App.scss';
 
 
-
-const PushComp = p => { 
-  const onDollar = useCallback(() => window.alert('push ' + p.value));
+const ImageCellRenderer = p => {
   return (
-    <>
-  <button onClick={onDollar}>
-    {/* {p.buttonText} */}
-   push
-    </button>
-  {p.value}
-  </>
-  )
-  };
-
-  class PullComp extends Component {
-    render(){
-      return (
-        <>
-        <button onClick={ () => window.alert('Pull')}>pull</button>
-        {this.props.value}
-        </>
-      )
-    }
-  }
+    <img src={p.value} style={{width:"30px",borderRadius:"50%"}}/>
+  ) 
+  
+}
 
 function App() {
   const containerStyle = useMemo(() => ({ width: '100%', height: '100vh' }), []);
@@ -42,36 +25,12 @@ function App() {
 
   const [rowData, setRowData] = useState();
   const [columnDefs, setColumnDefs] = useState([
-    { field: 'athlete',   pinned: 'left',
-    headerCheckboxSelection: true,
-    checkboxSelection: true,
-    showDisabledCheckboxes: true, 
-    // rowDrag: true,
-    cellRenderer:PushComp,
-    // cellRendererParams:{
-    //   buttonText: '='
-    // }
-   
-
-  },
-    { field: 'age', cellRenderer: p => <><b>Age is: </b>{p.value}</>  },
-    { field: 'country', 
   
-  },
-    { field: 'sport' },
-    { field: 'year',cellRendererSelector: p => {
-      if (p.value===2000){
-        return{component: PushComp}
-      }
-      if (p.value===2004){
-        return{component: PullComp}
-      }
-    } },
-    { field: 'date' },
-    { field: 'gold' },
-    { field: 'silver' },
-    { field: 'bronze' },
-    { field: 'total' },
+    { field: 'image',  pinned: 'left', cellRenderer: ImageCellRenderer},
+    { field: 'name' },
+    { field: 'symbol',cellRenderer: p => <>{p.value.toUpperCase()}</> },
+    {  headerName: "currentPrice",field: 'current_price' ,cellRenderer: p => <>{p.value.toLocaleString()}</>},
+    {  headerName: "marketCap", field: 'market_cap',cellRenderer: p => <>{p.value.toLocaleString()}</> },
   ]);
   const defaultColDef = useMemo(() => {
     return {
@@ -86,7 +45,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('https://www.ag-grid.com/example-assets/olympic-winners.json')
+    fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false')
     .then(result => result.json())
     .then(rowData => setRowData(rowData))
   }, []);
@@ -107,6 +66,7 @@ function App() {
 
   return (
     <div style={containerStyle}>
+      <h1>AG GRID TABLE</h1>
       <div className="example-wrapper">
         <div className="example-header">
             Page Size:
@@ -117,9 +77,10 @@ function App() {
               <option value="5">5</option>
               <option value="15">15</option>
             </select>
+            <button onClick={pushMeClicked} style={{marginLeft:"10px"}}>Push Me</button>
       </div>
         <div style={gridStyle} className="ag-theme-alpine" >
-           <button onClick={pushMeClicked}>Push Me</button>
+          
              <AgGridReact
               ref={gridRef}
               onCellClicked={cellClickedListener}

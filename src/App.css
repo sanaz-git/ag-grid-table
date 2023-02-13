@@ -8441,4 +8441,8 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia {
   font-style: italic;
   border-radius: 10px;
   text-align: center;
+}
+.ag-theme-alpine .ag-paging-panel {
+  border-radius: 15px;
+  border: 1px solid #253C59;
 }/*# sourceMappingURL=App.css.map */
