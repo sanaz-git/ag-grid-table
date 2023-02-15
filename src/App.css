@@ -8190,6 +8190,10 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia {
   background-color: #99B4BF;
   background-color: var(--ag-odd-row-background-color, #99B4BF);
 }
+.ag-theme-alpine .ag-row:nth-child(even) .ag-cell {
+  color: #13335e;
+  color: var(--ag-even-row-color, #13335e);
+}
 .ag-theme-alpine .ag-cell {
   text-align: center;
 }
@@ -8439,10 +8443,17 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia {
 }
 .ag-theme-alpine .ag-header {
   font-style: italic;
-  border-radius: 10px;
   text-align: center;
+  font-size: 15px;
 }
 .ag-theme-alpine .ag-paging-panel {
   border-radius: 15px;
   border: 1px solid #253C59;
+}
+.ag-theme-alpine .ag-root-wrapper {
+  border-radius: 15px;
+}
+.ag-theme-alpine .ag-header-cell-text {
+  text-align: center;
+  flex: 1;
 }/*# sourceMappingURL=App.css.map */

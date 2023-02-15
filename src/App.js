@@ -12,13 +12,13 @@ import './App.scss';
 
 const ImageCellRenderer = p => {
   return (
-    <img src={p.value} style={{width:"30px",borderRadius:"50%"}}/>
+    <img src={p.value} style={{width:"30px",borderRadius:"50%",paddingTop:"5px"}}/>
   ) 
   
 }
 
 function App() {
-  const containerStyle = useMemo(() => ({ width: '100%', height: '100vh' }), []);
+  const containerStyle = useMemo(() => ({ width: '70vw', height: '100vh' }), []);
   const gridStyle = useMemo(() => ({ height: 600, width: '100%' }), []);
 
   const gridRef =useRef();
@@ -26,8 +26,8 @@ function App() {
   const [rowData, setRowData] = useState();
   const [columnDefs, setColumnDefs] = useState([
   
-    { field: 'image',  pinned: 'left', cellRenderer: ImageCellRenderer},
-    { field: 'name' },
+    { field: 'image',  pinned: 'left', filter: false,  cellRenderer: ImageCellRenderer},
+    { field: 'name', },
     { field: 'symbol',cellRenderer: p => <>{p.value.toUpperCase()}</> },
     {  headerName: "currentPrice",field: 'current_price' ,cellRenderer: p => <>{p.value.toLocaleString()}</>},
     {  headerName: "marketCap", field: 'market_cap',cellRenderer: p => <>{p.value.toLocaleString()}</> },
@@ -39,7 +39,9 @@ function App() {
       filter: true,
       editable: true,
       flex: 1,
-      minWidth: 100,
+      minWidth:158,
+   
+    
     
     };
   }, []);
@@ -54,9 +56,10 @@ function App() {
   console.log('cellClicked', e)
   })
 
-  const pushMeClicked = useCallback (e => {
-    gridRef.current.api.deselectAll();
-  });
+  //deselect
+  // const pushMeClicked = useCallback (e => {
+  //   gridRef.current.api.deselectAll();
+  // });
 
   const onPageSizeChanged = useCallback(() => {
     var value = document.getElementById('page-size').value;
@@ -65,11 +68,11 @@ function App() {
 
 
   return (
-    <div style={containerStyle}>
-      <h1>AG GRID TABLE</h1>
+    <div  style={containerStyle}>
+      <h1 className="title">AG GRID TABLE</h1>
       <div className="example-wrapper">
         <div className="example-header">
-            Page Size:
+            <span>Page Size:  </span>
             <select onChange={onPageSizeChanged} id="page-size">
               <option value="10" >
                 10
@@ -77,7 +80,7 @@ function App() {
               <option value="5">5</option>
               <option value="15">15</option>
             </select>
-            <button onClick={pushMeClicked} style={{marginLeft:"10px"}}>Push Me</button>
+            {/* <button onClick={pushMeClicked} style={{marginLeft:"10px"}}>Push Me</button> */}
       </div>
         <div style={gridStyle} className="ag-theme-alpine" >
           
@@ -97,10 +100,7 @@ function App() {
               //dragrow
               // rowDragManaged={true} //dose not work when use pagination
           
-           
-      
-           
-           
+        
             
               />
             </div>

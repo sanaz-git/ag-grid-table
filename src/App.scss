@@ -16,22 +16,29 @@
        
     ));
 
- 
     .ag-header {
         font-style: italic;  
-        border-radius: 10px; 
         text-align: center; 
-             
+        font-size: 15px;   
+
     }
 
-.ag-paging-panel{
-    border-radius: 15px;
-       
-     
+    .ag-paging-panel{
+    border-radius: 15px;     
     border:1px solid #253C59;
-  
-}
+    }
+ 
+    .ag-root-wrapper {
+       border-radius: 15px;
+      
+      }
+    
+    .ag-header-cell-text{
+        text-align: center;
+        flex: 1;
+    }
 
+ 
 
     // or write CSS selectors to make customisations beyond what the parameters support
    

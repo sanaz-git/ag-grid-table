@@ -5,10 +5,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 30px;
+
+  display: flex;
+  justify-content: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.title{
+  font-style: italic;  
+  text-align: center; 
+  font-size: 2rem;
+  color: #eca218
+}
+
+.example-header{
+  background-color: #253C59;
+  padding-left: 20px;
+  padding-top: 10px;
+  border-radius: 5px;
+  border:1px solid none;
+  font-style: italic;  
+  height: 30px;
+  font-size: 15px;
+  color: #BF8D30;   
+
+}
+
+.example-header span{
+  padding-right: 15px;
+  font-weight: bold;
 }
