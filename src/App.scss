@@ -6,14 +6,13 @@
     // ^^^ the name of your theme here.
     @include ag-theme-alpine((
         // ^^^ call the mixin provided by the theme you're extending
-        alpine-active-color: #f34713,
+        alpine-active-color: #253C59,
         // ^^^ pass theme parameters
         background-color: #d9dcdd,
         header-background-color: #253C59,
         foreground-color: #fff,//text color
         secondary-foreground-color: #253C59, //pagination text
         checkbox-unchecked-color: #fff,
-       
     ));
 
     .ag-header {
@@ -29,8 +28,7 @@
     }
  
     .ag-root-wrapper {
-       border-radius: 15px;
-      
+       border-radius: 15px;      
       }
     
     .ag-header-cell-text{
@@ -38,7 +36,16 @@
         flex: 1;
     }
 
- 
+    .ag-ltr,
+    .ag-select,
+    .ag-ltr input[class^=ag-][type=text]{
+        color:#253C59;
+    }
+
+    .ag-icon{
+        color: #BF8D30;
+        
+    }
 
     // or write CSS selectors to make customisations beyond what the parameters support
    

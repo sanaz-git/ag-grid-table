@@ -29,10 +29,11 @@ function App() {
     { field: 'image',  pinned: 'left', filter: false,  cellRenderer: ImageCellRenderer},
     { field: 'name', },
     { field: 'symbol',cellRenderer: p => <>{p.value.toUpperCase()}</> },
-    {  headerName: "currentPrice",field: 'current_price' ,cellRenderer: p => <>{p.value.toLocaleString()}</>},
-    {  headerName: "marketCap", field: 'market_cap',cellRenderer: p => <>{p.value.toLocaleString()}</> },
+    {  headerName: "CurrentPrice",field: 'current_price' , filter: 'agNumberColumnFilter', cellRenderer: p => <>{p.value.toLocaleString()}</>},
+    {  headerName: "MarketCap", field: 'market_cap',filter: 'agNumberColumnFilter', cellRenderer: p => <>{p.value.toLocaleString()}</> },
   ]);
   const defaultColDef = useMemo(() => {
+   
     return {
       sortable: true,
       resizable: true,
@@ -40,8 +41,10 @@ function App() {
       editable: true,
       flex: 1,
       minWidth:158,
-   
-    
+      floatingFilter:true,
+      filterParams:{
+        buttons:['apply','clear','reset']
+      }
     
     };
   }, []);
