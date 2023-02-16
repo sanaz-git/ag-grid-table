@@ -1,8 +1,7 @@
 
 // import './App.css';
-import { ColumnGroup } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
-import { useState ,useEffect, useMemo, useCallback, useRef, Component} from 'react';
+import { useState ,useEffect, useMemo, useCallback, useRef} from 'react';
 
 // import 'ag-grid-community/styles/ag-grid.css';
 // import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -12,7 +11,7 @@ import './App.scss';
 
 const ImageCellRenderer = p => {
   return (
-    <img src={p.value} style={{width:"30px",borderRadius:"50%",paddingTop:"5px"}}/>
+    <img src={p.value} alt={'pic'} style={{width:"30px",borderRadius:"50%",paddingTop:"5px"}}/>
   ) 
   
 }
@@ -24,7 +23,7 @@ function App() {
   const gridRef =useRef();
 
   const [rowData, setRowData] = useState();
-  const [columnDefs, setColumnDefs] = useState([
+  const [columnDefs] = useState([
   
     { field: 'image',  pinned: 'left', filter: false,  cellRenderer: ImageCellRenderer},
     { field: 'name', },
